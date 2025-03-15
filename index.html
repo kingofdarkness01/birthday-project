@@ -5,67 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birthday Cake with Message</title>
   <style>
-      body {
-    margin: 0;
-    background-color: #ADD8E6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-  }
-  canvas {
-    display: block;
-  }
-  .message {
-    position: absolute;
-    bottom: 20px;
-    right: 20px;
-    left: 20px; /* Ensures it adjusts for smaller screens */
-    font-size: 20px; /* Slightly reduced font size for better visibility */
-    font-family: 'Cursive', sans-serif;
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-    padding: 15px; /* Increased padding for touch accessibility */
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
-    font-weight: bold;
-    text-align: center; /* Center the text */
-  }
-
-  .message:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
-    color: #fff; /* White text on hover */
-  }
-
-  /* Media query for smaller screens */
-  @media (max-width: 600px) {
-    .message {
-      font-size: 16px; /* Adjust font size for smaller screens */
-      padding: 10px; /* Reduced padding for smaller viewports */
+    body {
+      margin: 0;
+      background-color: #ADD8E6;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
-  }
+    canvas {
+      display: block;
+      max-width: 100%;
+    }
+    .message {
+      margin-top: 10px; /* Adjust spacing for visibility */
+      font-size: 18px; /* Optimal size for mobile */
+      font-family: 'Cursive', sans-serif;
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+      padding: 10px 15px; /* Padding for touch accessibility */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+      transition: background-color 0.3s, color 0.3s; /* Smooth hover effect */
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .message:hover {
+      background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+      color: #fff; /* White text on hover */
+    }
+
+    /* Media query for very small devices */
+    @media (max-height: 500px) {
+      .message {
+        font-size: 14px; /* Smaller font size for compact screens */
+        padding: 8px 10px;
+      }
+    }
   </style>
 </head>
 <body>
   <canvas id="cakeCanvas"></canvas>
 
-  <!-- Shorter and Stylized Clickable Text -->
+  <!-- Stylized Clickable Text Positioned Below -->
   <a href="message.html" class="message">View Message</a>
 
   <script>
     const canvas = document.getElementById('cakeCanvas');
     const ctx = canvas.getContext('2d');
 
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    // Adjust canvas size to fit within the viewport
+    function adjustCanvasSize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight * 0.7; // Leave space for the "View Message" button
+    }
+
+    adjustCanvasSize();
+    window.addEventListener('resize', adjustCanvasSize);
 
     const centerX = canvas.width / 2;
-    const baseY = canvas.height / 2 + 100;
+    const baseY = canvas.height / 2 + 50;
 
     const ingredients = {
       cherry: "#C20067",
