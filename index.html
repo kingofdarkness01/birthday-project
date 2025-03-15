@@ -5,40 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Birthday Cake with Message</title>
   <style>
-    body {
-      margin: 0;
-      background-color: #ADD8E6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-      position: relative;
-    }
-    canvas {
-      display: block;
-    }
-    .message {
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      font-size: 26px;
-      font-family: 'Cursive', sans-serif;
-      color: #000;
-      text-decoration: none;
-      cursor: pointer;
-      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-      padding: 10px 20px; /* Padding around the text */
-      border-radius: 10px; /* Rounded corners */
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
-      transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
-      font-weight: bold;
-    }
+  body {
+    margin: 0;
+    background-color: #ADD8E6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  canvas {
+    display: block;
+  }
+  .message {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    left: 20px; /* Ensures it adjusts for smaller screens */
+    font-size: 20px; /* Slightly reduced font size for better visibility */
+    font-family: 'Cursive', sans-serif;
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+    padding: 15px; /* Increased padding for touch accessibility */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+    font-weight: bold;
+    text-align: center; /* Center the text */
+  }
 
-    .message:hover {
-      background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
-      color: #fff; /* White text on hover */
+  .message:hover {
+    background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+    color: #fff; /* White text on hover */
+  }
+
+  /* Media query for smaller screens */
+  @media (max-width: 600px) {
+    .message {
+      font-size: 16px; /* Adjust font size for smaller screens */
+      padding: 10px; /* Reduced padding for smaller viewports */
     }
+  }
   </style>
 </head>
 <body>
