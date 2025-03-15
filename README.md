@@ -20,11 +20,11 @@ A creative and interactive project to celebrate birthdays with style! This proje
 
 ## 📁 File Structure
 
-birthday-project/
-├── index.html # Main page with the birthday cake
-├── message.html # Special message page
-├── README.md # Project documentation (this file)
-└── assets/ # (Optional) Folder for images, CSS, or additional files
+birthday-project/  
+├── index.html        # Main page with the birthday cake  
+├── message.html      # Special message page  
+├── README.md         # Project documentation (this file)  
+└── assets/           # (Optional) Folder for images, CSS, or additional files  
 
 ## 🌍 Deployment on GitHub Pages
 
