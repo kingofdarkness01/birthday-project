@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Birthday Cake with Message</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #ADD8E6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+    canvas {
+      display: block;
+    }
+    .message {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+      font-size: 26px;
+      font-family: 'Cursive', sans-serif;
+      color: #000;
+      text-decoration: none;
+      cursor: pointer;
+      background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+      padding: 10px 20px; /* Padding around the text */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+      transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+      font-weight: bold;
+    }
+
+    .message:hover {
+      background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
+      color: #fff; /* White text on hover */
+    }
+  </style>
+</head>
+<body>
+  <canvas id="cakeCanvas"></canvas>
+
+  <!-- Shorter and Stylized Clickable Text -->
+  <a href="message.html" class="message">View Message</a>
+
+  <script>
+    const canvas = document.getElementById('cakeCanvas');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const centerX = canvas.width / 2;
+    const baseY = canvas.height / 2 + 100;
+
+    const ingredients = {
+      cherry: "#C20067",
+      raspberry: "#e30b5d",
+      lemon: "#FFFA5C",
+      milkChocolate: "#BF671F",
+      darkChocolate: "#2A1506",
+      icing: "#FFFFFF",
+    };
+
+    const layers = [
+      { color: ingredients.raspberry, height: 30 },
+      { color: ingredients.darkChocolate, height: 20 },
+      { color: ingredients.lemon, height: 60 },
+      { color: ingredients.milkChocolate, height: 40 },
+    ];
+
+    function drawRectangle(color, x, y, width, height) {
+      ctx.fillStyle = color;
+      ctx.fillRect(x, y, width, height);
+    }
+
+    function drawCircle(color, x, y, radius) {
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = color;
+      ctx.fill();
+      ctx.closePath();
+    }
+
+    function drawIcing(color, startX, startY, width) {
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+
+      const waveWidth = width / 3;
+      const waveHeight = 20;
+
+      for (let i = 0; i < 3; i++) {
+        const cpX = startX + waveWidth * i + waveWidth / 2;
+        const cpY = startY - waveHeight;
+        const endX = startX + waveWidth * (i + 1);
+        const endY = startY;
+        ctx.quadraticCurveTo(cpX, cpY, endX, endY);
+      }
+
+      ctx.lineTo(startX + width, startY + 30);
+      ctx.lineTo(startX, startY + 30);
+      ctx.closePath();
+      ctx.fillStyle = color;
+      ctx.fill();
+    }
+
+    function drawText(text, x, y) {
+      ctx.fillStyle = "black";
+      ctx.font = "20px Raleway";
+      ctx.textAlign = "center";
+      ctx.fillText(text, x, y);
+    }
+
+    drawRectangle("white", centerX - 150, baseY, 300, 10);
+
+    let currentY = baseY - 10;
+    for (const layer of layers) {
+      drawRectangle(layer.color, centerX - 120, currentY - layer.height, 240, layer.height);
+      currentY -= layer.height;
+    }
+
+    drawIcing(ingredients.icing, centerX - 120, currentY, 240);
+
+    drawCircle(ingredients.cherry, centerX, currentY - 20, 15);
+
+    drawText("HAPPY BIRTHDAY", centerX, baseY + 60);
+  </script>
+</body>
+</html>

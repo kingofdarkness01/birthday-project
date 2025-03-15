@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Message</title>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    body {
+      margin: 0;
+      background: #fce4ec;
+      font-family: Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .face {
+      font-size: 80px;
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .face:hover {
+      transform: scale(1.1);
+    }
+
+    .message {
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.9);
+      max-width: 400px;
+      display: none; /* Hidden by default */
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      border-radius: 10px;
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    .message h1 {
+      color: #880e4f;
+    }
+
+    .message p {
+      font-size: 16px;
+      color: #555;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: scale(0.9);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .back {
+      margin-top: 20px;
+      font-size: 16px;
+      color: #880e4f;
+      font-weight: bold;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Happy Face Icon -->
+    <div class="face" id="happyFace">😊</div>
+
+    <!-- Hidden Message -->
+    <div class="message" id="messageBox">
+      <h1>Happy Birthday !! 🎉</h1>
+      <p><b>“ Wishing you endless laughter, joy, and cake to match your stunning beauty !! 🎂</b></p>
+      <p><b>Let’s celebrate like calories don’t count and fun never ends! 🥳💃 "</b></p>
+      <p><span style="color: red; font-weight: bold;">~ Stay Awesome! 💖🎈</span></p>
+    </div>
+
+    <!-- Instruction -->
+    <p class="back">Click on the Happy Face to See the Magic</p>
+  </div>
+
+  <script>
+    $(document).ready(function () {
+      $("#happyFace").on("click", function () {
+        const $message = $("#messageBox");
+
+        if ($message.is(":visible")) {
+          // Hide the message
+          $message.fadeOut();
+          $("body").css("background-color", "#fce4ec"); // Change background to pink
+        } else {
+          // Show the message
+          $message.fadeIn();
+          $("body").css("background-color", "#f48fb1"); // Change background to light pink
+        }
+      });
+    });
+  </script>
+</body>
+</html>
